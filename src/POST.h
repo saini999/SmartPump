@@ -18,22 +18,25 @@ void runPOST(){
     char URL[URLstr.length() + 1];
     URLstr.toCharArray(URL, URLstr.length() + 1);
 // Do HTTP POST communication with 10s for the timeout (read and write)
-    uint16_t rc = net->doPost(URL, CONTENT_TYPE, PAYLOAD, 10000, 10000);
+    uint16_t rc = net->doPost(URL, CONTENT_TYPE, PAYLOAD, 5000, 5000);
    if(rc == 200) {
     // Success, output the data received on the serial
+    /*
     Serial.print(F("POSTOK ("));
     Serial.print(net->getDataSizeReceived());
     Serial.println(F(" b)"));
     Serial.print(F("DT : "));
     Serial.println(net->getDataReceived());
+    */
+    Serial.println("P" + rc);
   } else if (rc == 701){
     resetHTTP();
-    Serial.print(F("POSTERR"));
-    Serial.println(rc);
+    //Serial.print(F("POSTERR"));
+    Serial.println("P" + rc);
   } else {
     // Failed...
-    Serial.print(F("POSTERR"));
-    Serial.println(rc);
+    //Serial.print(F("POSTERR"));
+    Serial.println("P" + rc);
   }
 
 }

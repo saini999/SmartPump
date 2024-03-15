@@ -25,8 +25,6 @@ SoftwareSerial SerialModem(D0, D1);
 bool connected = false;
 bool disconnected = true;
 
-int battery, powerState, phaseState;
-
 void setupModule() {
     net = new SIM800L((Stream *)&SerialModem, SIM800_RST_PIN, 200, 512, (Stream *)&Serial);
   //net->enableDebug = true;
@@ -36,7 +34,7 @@ void setupModule() {
     delay(1000);
   }
   Serial.println(F("CONOK"));
-  Serial.println(net->setPowerMode(NORMAL));
+  net->setPowerMode(NORMAL);
   // Wait for the GSM signal
   uint8_t signal = net->getSignal();
   while(signal <= 0) {
@@ -46,7 +44,7 @@ void setupModule() {
   }
   Serial.print(F("SIGOK:"));
   Serial.println(signal);
-  delay(1000);
+  delay(500);
 
   // Wait for operator network registration (national or roaming network)
   NetworkRegistration network = net->getRegistrationStatus();
@@ -69,7 +67,7 @@ void setupModule() {
 void resetHTTP() {
   net->sendCommand_P(AT_CMD_HTTPTERM);
   if(!net->readResponseCheckAnswer_P(DEFAULT_TIMEOUT, AT_RSP_OK)) {
-    Serial.println("unable to reset HTTP");
+    Serial.println(F("ERRHTTPRESET"));
   }
 }
 
@@ -114,10 +112,10 @@ void reconnectNET() {
 
 void getNetworkStatus() {
   if(net->isConnectedGPRS()){
-    Serial.print(F("ConnectedIP "));
+    Serial.print(F("GPRSCONOK"));
     //Serial.println(net->getIP());
   } else {
-    Serial.println(F("Network Error"));
+    Serial.println(F("ERRGPRSCON"));
     reconnectNET();
   }
 }

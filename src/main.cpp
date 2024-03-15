@@ -1,7 +1,7 @@
 #define SERIAL_RX_BUFFER_SIZE 512
 #define SERIAL_TX_BUFFER_SIZE 512
 
-//#define USE_WIFI
+#define USE_WIFI
 
 #include <Arduino.h>
 
@@ -14,9 +14,8 @@ void setup() {
     delay(1000);
     setupWifi();
     setupIO();
-    Serial.println("Delay 5s");
-    delay(5000);
-    Serial.println("Done");
+    Serial.println("Ready");
+    delay(1000);
 }
 
 void loop() {
@@ -27,6 +26,7 @@ void loop() {
 }
 
 #else
+
 #include "mainGSM.h"
 #include "GET.h"
 #include "POST.h"
@@ -47,16 +47,15 @@ void setup() {
     Serial.println(F("STARTGET"));
     URLstr = F("http://api.gaditc.in/iot?device_id=");
     URLstr = URLstr + (String)deviceID;
-    Serial.println(URLstr);
+    //Serial.println(URLstr);
     resetHTTP();
     setupIO();
 }
 
 void loop() {
   runGET();
-  delay(200);
-  genPostData(getBattery(), getPowerState(), getPhaseSeq());
+  delay(100);
   runPOST();
-  delay(200);
+  delay(100);
 }
 #endif
