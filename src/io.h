@@ -122,22 +122,22 @@ void processData(String data) {
     if(data.indexOf("\"id\":" + deviceID) != -1 
         && data.indexOf("\"state\":") != -1
         #ifdef USE_LOCK
-           && data.indexOf("\"lock\":") != -1
+           && data.indexOf("\"stateLock\":") != -1
         #endif
         #ifdef USE_LAMP
-            && data.indexOf("\"lamp\":") != -1
+            && data.indexOf("\"stateLamp\":") != -1
         #endif
         ){
       state = data.indexOf("\"state\":1") != -1 ? true : false;
       setPump(state ? ON : OFF);
       Serial.print(F("Turning pump ")); Serial.println(state ? "ON" : "OFF");
         #ifdef USE_LOCK
-            bool lockState = data.indexOf("\"lock\":1") != -1 ? true : false;
+            bool lockState = data.indexOf("\"stateLock\":1") != -1 ? true : false;
             setLock(lockState ? ON : OFF);
             Serial.print(F("Lock ")); Serial.println(lockState ? "ON" : "OFF");
         #endif
         #ifdef USE_LAMP
-            bool lampState = data.indexOf("\"lamp\":1") != -1 ? true : false;
+            bool lampState = data.indexOf("\"stateLamp\":1") != -1 ? true : false;
             setLamp(lampState ? ON : OFF);
             Serial.print(F("Lamp ")); Serial.println(lampState ? "ON" : "OFF");
         #endif
