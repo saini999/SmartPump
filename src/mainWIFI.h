@@ -5,8 +5,8 @@
     #include <ESP8266WiFi.h>
     #include <ESP8266HTTPClient.h>
     #include <WiFiClient.h>
-    const char* ssid = "Noor2";
-    const char* password = "GAD.itcjbd";
+    const char* ssid = "WIFISSID";
+    const char* password = "WIFIPASSCODE";
 
     //Your Domain name with URL path or IP address with path
     String serverName;
