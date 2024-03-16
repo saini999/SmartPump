@@ -29,9 +29,6 @@ void loop() {
 #define SERIAL_RX_BUFFER_SIZE 512
 #define SERIAL_TX_BUFFER_SIZE 512
 
-#define SERIAL_RX_BUFFER_SIZE 512
-#define SERIAL_TX_BUFFER_SIZE 512
-
 #include "mainGSM.h"
 #include "GET.h"
 #include "POST.h"
