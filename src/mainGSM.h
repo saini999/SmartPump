@@ -6,20 +6,13 @@
 #include "SIM800L.h"
 #include "SoftwareSerial.h"
 String URLstr;
-#define SIM800_RST_PIN -1
-
-
-
-//#define USE_LOCK //TODO: add Lock & Lamp Code on API Server and App
-//#define USE_LAMP
-//#define USE_PH_SEQ //Untested right now
-//#define USE_BATTERY
+#define SIM800_RST_PIN D6
 
 
 const char APN[] = "airtelgprs.com";
 
 SIM800L* net;
-SoftwareSerial SerialModem(D0, D1);
+SoftwareSerial SerialModem(D7, D8);
 
 
 bool connected = false;
@@ -84,8 +77,8 @@ void connectNET() {
   } else {
     Serial.println(F("NETERR"));
     Serial.println(F("RST"));
-    net->reset();
-    setupModule();
+    //net->reset();
+    //setupModule();
     return;
   }
 }

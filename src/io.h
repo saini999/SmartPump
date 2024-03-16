@@ -103,6 +103,8 @@ void setupIO() {
     pinMode(pumpPin, OUTPUT);
     pinMode(pumpPin1, OUTPUT);
     pinMode(powerPin, INPUT);
+    digitalWrite(pumpPin, OFF);
+    digitalWrite(pumpPin1, ON);
     #ifdef USE_PH_SEQ
         pinMode(phaseAPin, INPUT);
         pinMode(phaseBPin, INPUT);
@@ -112,9 +114,11 @@ void setupIO() {
 
     #ifdef USE_LOCK
         pinMode(lockPin, OUTPUT);
+        digitalWrite(lockPin, OFF);
     #endif
     #ifdef USE_LAMP
         pinMode(lampPin, OUTPUT);
+        digitalWrite(lampPin, OFF);
     #endif
     #ifdef USE_BATTERY
         pinMode(batteryPin, INPUT);
