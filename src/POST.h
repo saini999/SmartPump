@@ -30,9 +30,11 @@ void runPOST(){
     */
     Serial.println("P" + rc);
   } else if (rc == 701){
-    resetHTTP();
+    //resetHTTP();
     //Serial.print(F("POSTERR"));
     Serial.println("P" + rc);
+    net->reset();
+    setupModule();
   } else {
     // Failed...
     //Serial.print(F("POSTERR"));

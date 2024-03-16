@@ -23,9 +23,9 @@ void runGET() {
     processData(data);
   } else if (rc == 701){
     Serial.println("G" + rc);
-    //net->reset();
-    //setupModule();
-    resetHTTP();
+    net->reset();
+    setupModule();
+    //resetHTTP();
   } else {
     // Failed...
     //Serial.print(F("GETERR"));
