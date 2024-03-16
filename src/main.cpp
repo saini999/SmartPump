@@ -1,7 +1,9 @@
 #define SERIAL_RX_BUFFER_SIZE 512
 #define SERIAL_TX_BUFFER_SIZE 512
 
-#define USE_WIFI
+//#define USE_WIFI
+#define USE_LOCK
+#define USE_LAMP
 
 #include <Arduino.h>
 

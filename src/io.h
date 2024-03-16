@@ -8,15 +8,16 @@
 
 bool state;
 
-#define ON HIGH
-#define OFF LOW
+#define ON LOW
+#define OFF HIGH
 
 #define powerPin -1
 #define phaseOKPin -1
 #define phaseAPin -1
 #define phaseBPin -1
 #define batteryPin -1
-#define pumpPin LED_BUILTIN
+#define pumpPin D0
+#define pumpPin1 LED_BUILTIN
 
 #ifdef USE_PH_SEQ
     unsigned long t1_start, t1_end;
@@ -63,14 +64,14 @@ bool state;
 #endif
 
 #ifdef USE_LOCK
-    #define lockPin -1
+    #define lockPin D1
     void setLock(int state){
         digitalWrite(lockPin, state);
     }
 #endif
 
 #ifdef USE_LAMP
-    #define lampPin -1
+    #define lampPin D2
     void setLamp(int state){
         digitalWrite(lampPin, state);
     }
@@ -94,11 +95,13 @@ int getPowerState() {
 
 
 void setPump(int state){
+    digitalWrite(pumpPin1, state);
     digitalWrite(pumpPin, state);
 }
 
 void setupIO() {
     pinMode(pumpPin, OUTPUT);
+    pinMode(pumpPin1, OUTPUT);
     pinMode(powerPin, INPUT);
     #ifdef USE_PH_SEQ
         pinMode(phaseAPin, INPUT);
